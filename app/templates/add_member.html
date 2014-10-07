@@ -1,0 +1,20 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Add Member</h1>
+<form action="" method="post" enctype="multipart/form-data" name="add_member">
+  {{ form.hidden_tag() }}
+  <p>Name: {{ form.name }}</p>
+  <p>Age: {{ form.age }}</p>
+  <p>Weight Range: {{ form.weight_range }}</p>
+  <p>Eye Colour: {{ form.eye_colour }}</p>
+  <p>Tattos: {{ form.tattoos }}</p>
+  <p>Piercings: {{ form.piercings }}</p>
+  <p>Hair Colour: {{ form.hair_colour }}</p>
+  <p>Video Link: {{ form.video_link }}</p>
+  <p>Head Shot: {{ form.head_shot }}</p>
+  <p>Contact Info: {{ form.contact_info }}</p>
+	<p><input type="submit" value= "Add New Member"></p>
+</form>
+{% endblock %}

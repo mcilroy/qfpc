@@ -1,0 +1,60 @@
+{% macro display_profile_item(item) %}
+	{% if item %}
+    <td>{{ item }}</td>
+	{% else %}
+		<td></td>
+	{% endif %}
+{% endmacro %}
+
+{% macro display_profile_img(item) %}
+	{% if item %}
+  <td><img src="{{ item }}"></img></td>
+	{% else %}
+		<td></td>
+	{% endif %}
+{% endmacro %}
+{% macro display_profile_link(item) %}
+	{% if item %}
+  <td><a href="{{ item }}">{{ item }}</a></td>
+	{% else %}
+		<td></td>
+	{% endif %}
+{% endmacro %}
+
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Member Directory</h1>
+<form action="" method="post" name="member_directory">
+  {{ form.hidden_tag() }}
+  <p>Search Criteria: {{ form.user_list }}{{form.search_value }}</p>
+	<p><input type="submit" value= "Search"></p>
+</form>
+<table>
+  <tr>
+    {% for column in columns %}
+      {% if column == 'contact_info' and isAdmin == False %}
+      {% else %}
+        <th>{{ column }}</th>
+      {% endif %}
+    {% endfor %}
+  </tr>
+  {% for profile in members if profile.hidden == False%}
+    <tr>
+      {{ display_profile_item(profile.name) }}
+      {{ display_profile_item(profile.age) }}
+      {{ display_profile_item(profile.weight_range) }}
+      {{ display_profile_item(profile.eye_colour) }}
+      {{ display_profile_item(profile.tattoos) }}
+      {{ display_profile_item(profile.piercings) }}
+      {{ display_profile_item(profile.hair_colour) }}
+      {{ display_profile_link(profile.video_link) }}
+      {% if isAdmin == True %}
+        {{ display_profile_item(profile.contact_info) }}
+      {% endif %}
+      {{ display_profile_img(url_for('static', filename='img/'~profile.head_shot)) }}
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

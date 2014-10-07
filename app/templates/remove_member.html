@@ -1,0 +1,12 @@
+
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Remove Member Information</h1>
+<form action="" method="post" name="remove_member">
+  {{ form.hidden_tag() }}
+    <p>Remove member: {{ form.user_list }}</p>
+	<p><input type="submit" value= "Remove Member"></p>
+</form>
+{% endblock %}

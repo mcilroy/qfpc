@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{%trans%}Home Page{%endtrans%}</h2>
+  {% if isUser == True or isAdmin == True or isSuperAdmin == True%}
+    <p> <a href="{{ url_for('member_directory_page') }}">{%trans%}Member Directory{%endtrans%}</a></p>
+    <p> <a href="{{ url_for('profile_page') }}">{%trans%}User Profile Page{%endtrans%}</a></p>
+  {% endif %}
+  {% if isAdmin == True or isSuperAdmin == True %}
+    <p> <a href="{{ url_for('user_approve_page') }}">{%trans%}Approve User(s){%endtrans%}</a></p>
+    <p> <a href="{{ url_for('add_member_page') }}">{%trans%}Add Member Information{%endtrans%}</a></p>
+    <p> <a href="{{ url_for('remove_member_page') }}">{%trans%}Remove Member Information{%endtrans%}</a></p>
+    <p> <a href="{{ url_for('remove_user_page') }}">{%trans%}Remove User {%endtrans%}</a></p>
+  {% endif %}
+  {% if isSuperAdmin == True %}
+    <p> <a href="{{ url_for('admin_approve_page') }}">{%trans%}Approve Admin(s){%endtrans%}</a></p>
+  {% endif %}
+{% endblock %}

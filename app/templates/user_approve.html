@@ -1,0 +1,19 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+{% if modifier_type == 'user' %}
+  <h1>Approve User(s)</h1>
+{% elif modifier_type == 'admin' %}
+  <h1>Approve Admin(s)</h1>
+{% endif %}
+<form action="" method="post" name="user_approve">
+  {{ form.hidden_tag() }}
+  {% if modifier_type == 'user' %}
+    <p>Approve a user: {{ form.user_list }}</p>
+  {% elif modifier_type == 'admin' %}
+    <p>Approve an admin: {{ form.user_list }}</p>
+  {% endif %}
+	<p><input type="submit" value= "Submit Approvals"></p>
+</form>
+{% endblock %}
