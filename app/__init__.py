@@ -29,7 +29,7 @@ def get_locale():
 
 from .models import User,Role,db, MemberInfo
 # Reset all the database tables
-db.drop_all()
+#db.drop_all()
 db.create_all()
 
 # Setup Flask-User

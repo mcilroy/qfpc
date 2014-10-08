@@ -42,3 +42,4 @@ env/
 *.pyc
 app/static/img/
 config.py
+*.fcgi

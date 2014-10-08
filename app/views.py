@@ -16,14 +16,15 @@ def allowed_file(filename):
 @app.route('/')
 @app.route('/index')
 def home_page():
-  isUser,isAdmin,isSuperAdmin = False,False,False
-  if 'user' in [role.name for role in current_user.roles]:
-    isUser = True
-  if 'admin' in [role.name for role in current_user.roles]:
-    isAdmin = True
-  if 'superAdmin' in [role.name for role in current_user.roles]:
-    isSuperAdmin = True
-  return render_template('index.html',isUser=isUser,isAdmin=isAdmin,isSuperAdmin=isSuperAdmin)
+    isUser,isAdmin,isSuperAdmin = False,False,False
+    if current_user.is_anonymous() == False:
+      if 'user' in [role.name for role in current_user.roles]:
+        isUser = True
+      if 'admin' in [role.name for role in current_user.roles]:
+        isAdmin = True
+      if 'superAdmin' in [role.name for role in current_user.roles]:
+        isSuperAdmin = True
+    return render_template('index.html',isUser=isUser,isAdmin=isAdmin,isSuperAdmin=isSuperAdmin)
 
 # Member directory page
 @app.route('/member_directory',methods=['GET','POST'])
